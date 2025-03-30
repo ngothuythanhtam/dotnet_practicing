@@ -1,0 +1,13 @@
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\bin\Debug\Lab2.exe.config
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\bin\Debug\Lab2.exe
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\bin\Debug\Lab2.pdb
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.csproj.AssemblyReference.cache
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.Properties.Resources.resources
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.csproj.GenerateResource.cache
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.csproj.CoreCompileInputs.cache
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.exe
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.pdb
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.Form_student_details.resources
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.Ex2.Employee_details.resources
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.Ex2.Login.resources
+D:\CTU\NET\Labs\dotnet_practicing\Lab2\obj\Debug\Lab2.Ex3.FlightReservationDetailscs.resources
