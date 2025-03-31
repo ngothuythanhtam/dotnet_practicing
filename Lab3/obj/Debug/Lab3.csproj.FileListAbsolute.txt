@@ -1,0 +1,10 @@
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\bin\Debug\Lab3.exe.config
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\bin\Debug\Lab3.exe
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\bin\Debug\Lab3.pdb
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\obj\Debug\Lab3.csproj.AssemblyReference.cache
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\obj\Debug\Lab3.frmBookSale.resources
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\obj\Debug\Lab3.Properties.Resources.resources
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\obj\Debug\Lab3.csproj.GenerateResource.cache
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\obj\Debug\Lab3.csproj.CoreCompileInputs.cache
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\obj\Debug\Lab3.exe
+D:\CTU\NET\Labs\dotnet_practicing\Lab3\obj\Debug\Lab3.pdb
