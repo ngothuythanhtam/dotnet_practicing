@@ -77,17 +77,17 @@ namespace Lab6.prjDVD
                 SqlCommand com = new SqlCommand("SELECT MAX(DVDCodeNo) FROM DVDLibrary", Database.con);
                 object result = com.ExecuteScalar();
                 CodeNo = (result == DBNull.Value) ? 0 : Convert.ToInt32(result);
-                CodeNo++;
                 Database.CloseConnection();
-
-                ResetFields(true);
-                txtNo.Text = CodeNo.ToString();
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error getting next DVD Code: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 CodeNo = 0;
             }
+            CodeNo++;
+            ResetFields(true);
+            txtNo.Text = CodeNo.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab6.prjCanBo
+namespace Lab6.prjDVD
 {
-    class clsDatabase
+    class Database
     {
         public static SqlConnection con;
 
@@ -15,7 +15,7 @@ namespace Lab6.prjCanBo
         {
             try
             {
-                con = new SqlConnection("Data Source=DESKTOP-3JFU13I;Initial Catalog=ThongTinCanBo;User ID=mylogin;Password=mylogin");
+                con = new SqlConnection("Data Source=DESKTOP-3JFU13I;Initial Catalog=Lab6;User ID=mylogin;Password=mylogin");
                 con.Open();
             }
             catch (Exception)

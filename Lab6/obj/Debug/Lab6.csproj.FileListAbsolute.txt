@@ -8,3 +8,4 @@ D:\CTU\NET\Labs\dotnet_practicing\Lab6\obj\Debug\Lab6.csproj.CoreCompileInputs.c
 D:\CTU\NET\Labs\dotnet_practicing\Lab6\obj\Debug\Lab6.exe
 D:\CTU\NET\Labs\dotnet_practicing\Lab6\obj\Debug\Lab6.pdb
 D:\CTU\NET\Labs\dotnet_practicing\Lab6\obj\Debug\Lab6.prjCanBo.frmThongTinCanBo.resources
+D:\CTU\NET\Labs\dotnet_practicing\Lab6\obj\Debug\Lab6.ThanhToan.frmThanhToan.resources

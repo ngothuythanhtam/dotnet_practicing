@@ -21,23 +21,23 @@ namespace Lab6.prjCanBo
         {
             
             InitializeComponent();
-            if (clsDatabase.OpenConnection())
+            if (Database.OpenConnection())
             {
                 MessageBox.Show("kết nối thành công");
-                clsDatabase.CloseConnection();
+                Database.CloseConnection();
             }
             else
             {
                 MessageBox.Show("Không thể kết nối");
             }
-            clsDatabase.OpenConnection();
-            SqlDataAdapter da = new SqlDataAdapter("Select * From ChucVu", clsDatabase.con);
+            Database.OpenConnection();
+            SqlDataAdapter da = new SqlDataAdapter("Select * From ChucVu", Database.con);
             DataTable dt = new DataTable();
             da.Fill(dt);
             cboCV.DataSource = dt;
             cboCV.DisplayMember = "TenCV";
             cboCV.ValueMember = "MaCV";
-            clsDatabase.CloseConnection();
+            Database.CloseConnection();
             btnSave.Enabled = false;
         }
 
@@ -58,21 +58,20 @@ namespace Lab6.prjCanBo
         {
             try
             {
-                clsDatabase.OpenConnection();
-                SqlCommand com = new SqlCommand("SELECT MAX(MaCB) FROM CanBo", clsDatabase.con);
+                Database.OpenConnection();
+                SqlCommand com = new SqlCommand("SELECT MAX(MaCB) FROM CanBo", Database.con);
                 object result = com.ExecuteScalar();
-                MaCb = (result == DBNull.Value) ? 1 : Convert.ToInt32(result);
-                MaCb++;
-                clsDatabase.CloseConnection();
-
-                ResetFields(true);
-                txtMSCB.Text = MaCb.ToString();
+                MaCb = (result == DBNull.Value) ? 0 : Convert.ToInt32(result);
+                Database.CloseConnection();                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error getting next Ma Can Bo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MaCb = 1;
+                MaCb = 0;
             }
+            MaCb++;
+            ResetFields(true);
+            txtMSCB.Text = MaCb.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -80,8 +79,8 @@ namespace Lab6.prjCanBo
             try
             {
                 string strInsert = "Insert Into CanBo Values (@MaCB, @TenCB, @MaCV, @SoGioGiang, @DonGia)";
-                clsDatabase.OpenConnection();
-                SqlCommand com = new SqlCommand(strInsert, clsDatabase.con);
+                Database.OpenConnection();
+                SqlCommand com = new SqlCommand(strInsert, Database.con);
 
                 SqlParameter p1 = new SqlParameter("@MaCB", SqlDbType.Int);
                 p1.Value = MaCb;
@@ -90,9 +89,9 @@ namespace Lab6.prjCanBo
                 SqlParameter p3 = new SqlParameter("@MaCV", SqlDbType.Int);
                 p3.Value = cboCV.SelectedValue;
                 SqlParameter p4 = new SqlParameter("@SoGioGiang", SqlDbType.Int);
-                p4.Value = txtSoGioGiang.Text;
+                p4.Value = Convert.ToInt32(txtSoGioGiang.Text);
                 SqlParameter p5 = new SqlParameter("@DonGia", SqlDbType.Money);
-                p5.Value = txtDonGia.Text;
+                p5.Value = Convert.ToDecimal(txtDonGia.Text);
 
                 com.Parameters.Add(p1);
                 com.Parameters.Add(p2);
@@ -102,7 +101,7 @@ namespace Lab6.prjCanBo
                 com.ExecuteNonQuery();
 
                 MessageBox.Show("Insert successfully!!");
-                clsDatabase.CloseConnection();
+                Database.CloseConnection();
                 ResetFields(false);
             }
             catch (Exception ex)
