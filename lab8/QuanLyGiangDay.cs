@@ -36,9 +36,11 @@ namespace lab8
                 {
                     con = new SqlConnection("Data Source=DESKTOP-3JFU13I; Initial Catalog=lab8;User ID=mylogin;Password=mylogin");
                     con.Open();
+                    Console.WriteLine("Connection opened successfully"); // Debug
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Console.WriteLine("Connection failed: " + ex.Message); // Debug
                     return false;
                 }
                 return true;
@@ -63,45 +65,26 @@ namespace lab8
             this.maCB = maCB;
             this.tenCanBo = tenCanBo;
             lblGiangVien.Text = $"Xin chào: {tenCanBo}";
-            LoadClasses();
-            LoadSubjects();
-            dgvStudents.ReadOnly = false; // Allow editing
+            gradeChanges = new List<StudentGradeChange>();
+            LoadSubjects(); // Load subjects first
+            LoadClasses();  // Then load classes based on the default subject
+            SetupDataGridView();
+            // Thêm sự kiện SelectedIndexChanged cho cboMaMon
+            cboMaMon.SelectedIndexChanged += new EventHandler(cboMaMon_SelectedIndexChanged);
+        }
+
+        private void SetupDataGridView()
+        {
+            dgvStudents.ReadOnly = false;
             dgvStudents.EditMode = DataGridViewEditMode.EditOnEnter;
             dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvStudents.CellEndEdit += new DataGridViewCellEventHandler(dgvStudents_CellEndEdit);
             this.Controls.Add(dgvStudents);
-            gradeChanges = new List<StudentGradeChange>();
         }
 
-        private void LoadClasses()
+        private void cboMaMon_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                clsData.OpenConnection();
-                string query = @"SELECT DISTINCT GD.MALOP, LH.TENLOP 
-                               FROM GIANGDAY GD 
-                               JOIN LOPHOC LH ON GD.MALOP = LH.MALOP 
-                               WHERE GD.MACB = @MaCB";
-
-                using (SqlCommand cmd = new SqlCommand(query, clsData.con))
-                {
-                    cmd.Parameters.AddWithValue("@MaCB", maCB);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        cboMaLop.DataSource = dt;
-                        cboMaLop.DisplayMember = "TENLOP";
-                        cboMaLop.ValueMember = "MALOP";
-                    }
-                }
-                clsData.CloseConnection();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading classes: " + ex.Message);
-                clsData.CloseConnection();
-            }
+            LoadClasses(); // Tự động tải danh sách lớp khi chọn môn
         }
 
         private void LoadSubjects()
@@ -124,6 +107,10 @@ namespace lab8
                         cboMaMon.DataSource = dt;
                         cboMaMon.DisplayMember = "TENMON";
                         cboMaMon.ValueMember = "MAMON";
+                        if (dt.Rows.Count > 0)
+                        {
+                            cboMaMon.SelectedIndex = 0; // Chọn mục đầu tiên làm mặc định
+                        }
                     }
                 }
                 clsData.CloseConnection();
@@ -131,6 +118,57 @@ namespace lab8
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading subjects: " + ex.Message);
+                clsData.CloseConnection();
+            }
+        }
+
+        private void LoadClasses()
+        {
+            try
+            {
+                if (cboMaMon.SelectedValue == null)
+                {
+                    cboMaLop.DataSource = null;
+                    return;
+                }
+
+                string selectedMaMon = cboMaMon.SelectedValue.ToString();
+                Console.WriteLine("Selected MaMon: " + selectedMaMon); // Debug
+
+                clsData.OpenConnection();
+                string query = @"SELECT DISTINCT GD.MALOP, LH.TENLOP 
+                               FROM GIANGDAY GD 
+                               JOIN LOPHOC LH ON GD.MALOP = LH.MALOP 
+                               WHERE GD.MACB = @MaCB AND GD.MAMON = @MaMon";
+
+                using (SqlCommand cmd = new SqlCommand(query, clsData.con))
+                {
+                    cmd.Parameters.AddWithValue("@MaCB", maCB);
+                    cmd.Parameters.AddWithValue("@MaMon", selectedMaMon);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        if (dt.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Không có lớp nào cho môn học này!");
+                            cboMaLop.DataSource = null;
+                            return;
+                        }
+                        cboMaLop.DataSource = dt;
+                        cboMaLop.DisplayMember = "TENLOP";
+                        cboMaLop.ValueMember = "MALOP";
+                        if (dt.Rows.Count > 0)
+                        {
+                            cboMaLop.SelectedIndex = 0; // Chọn mục đầu tiên làm mặc định
+                        }
+                    }
+                }
+                clsData.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading classes: " + ex.Message);
                 clsData.CloseConnection();
             }
         }
