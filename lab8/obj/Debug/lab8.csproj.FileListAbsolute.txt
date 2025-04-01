@@ -1,0 +1,11 @@
+D:\CTU\NET\Labs\dotnet_practicing\lab8\bin\Debug\lab8.exe.config
+D:\CTU\NET\Labs\dotnet_practicing\lab8\bin\Debug\lab8.exe
+D:\CTU\NET\Labs\dotnet_practicing\lab8\bin\Debug\lab8.pdb
+D:\CTU\NET\Labs\dotnet_practicing\lab8\obj\Debug\lab8.csproj.AssemblyReference.cache
+D:\CTU\NET\Labs\dotnet_practicing\lab8\obj\Debug\lab8.Login.resources
+D:\CTU\NET\Labs\dotnet_practicing\lab8\obj\Debug\lab8.Properties.Resources.resources
+D:\CTU\NET\Labs\dotnet_practicing\lab8\obj\Debug\lab8.csproj.GenerateResource.cache
+D:\CTU\NET\Labs\dotnet_practicing\lab8\obj\Debug\lab8.csproj.CoreCompileInputs.cache
+D:\CTU\NET\Labs\dotnet_practicing\lab8\obj\Debug\lab8.exe
+D:\CTU\NET\Labs\dotnet_practicing\lab8\obj\Debug\lab8.pdb
+D:\CTU\NET\Labs\dotnet_practicing\lab8\obj\Debug\lab8.QuanLyGiangDay.resources

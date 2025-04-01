@@ -8,6 +8,7 @@ SELECT name, suser_sname(owner_sid) AS owner
 FROM sys.databases
 WHERE suser_sname(owner_sid) = 'mylogin';
 
+/*************************************************************************************/
 create table DVDLibrary(
 	DVDCodeNo int primary key,
 	DVDTitle nvarchar(100) not null,
@@ -23,6 +24,7 @@ create table ChucVu(
 	TenCV nvarchar(30)
 );
 
+/*************************************************************************************/
 create table CanBo(
 	MaCB int primary key,
 	TenCB nvarchar(30),
@@ -39,4 +41,32 @@ INSERT INTO ChucVu (MaCV, TenCV) VALUES
 (4, 'Tro Giang'),
 (5, 'Nhan Vien Hanh Chinh');
 
-select * from ChucVu;
+select * from CanBo;
+
+/*************************************************************************************/
+create database ThanhToan;
+use ThanhToan;
+
+create table Phong(
+	MaPhong int primary key,
+	TenPhong varchar(20)
+);
+
+create table KhachHang (
+	SoHD int primary key,
+	TenKH nvarchar(30),
+	SoCMND varchar(11),
+	SoTien money,
+	NgayTT datetime,
+	SoPhong int,
+	constraint FK_MaPhong foreign key (SoPhong) references Phong(MaPhong)
+);
+
+INSERT INTO Phong(MaPhong, TenPhong) VALUES 
+(1, 'A01'),
+(2, 'A02'),
+(3, 'A03'),
+(4, 'A04'),
+(5, 'A05');
+
+select * from KhachHang;
