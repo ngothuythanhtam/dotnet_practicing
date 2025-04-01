@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Lab6.prjCanBo;
 using Lab6.prjDVD;
 
 namespace Lab6
@@ -17,7 +18,10 @@ namespace Lab6
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmDVDCatalog());
+
+            //Application.Run(new frmDVDCatalog());
+            Application.Run(new frmThongTinCanBo());
+
         }
     }
 }
